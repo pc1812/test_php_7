@@ -4,13 +4,8 @@ namespace App;
 
 class Mail {
 	
-	public static function mailto($email, $name, )
+	public static function mailto($email, $nickname, $href, $mydomain)
 	{
-		$email = "chu.napoleon@gmail.com";
-		$nickname = "Paul";
-		$href = "href";
-		$mydomain = "local";
-
 		$subject = "From Doomeye Support";
 		$message = "Hello, ".$nickname."\n\n";
 		$message .= "Please click the below link to reset your password.\n\n";
