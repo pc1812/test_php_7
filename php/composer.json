@@ -1,0 +1,12 @@
+{
+	"name": "doomeye/testing",
+	"description": "testing",
+	"keywords": ["test"],
+	"license" : "BSD-3-Clause",
+	"authors" : [
+		{"name": "Paul", "email": "paul@doomeye.com", "homepage": "http://www.doomeye.com"}
+	],
+	"require-dev": {
+		 "phpunit/phpunit": "~5.7"
+	}
+}

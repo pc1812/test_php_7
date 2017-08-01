@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+		 backupStaticAttributes="false"
+		 bootstrap="main/init.php"
+		 timeoutForMediumTests="5"
+		 colors="true"
+		 convertErrorsToExceptions="true"
+		 convertNoticesToExceptions="true"
+		 convertWarningsToExceptions="true"
+		 processIsolation="false"
+		 stopOnFailure="false">
+	<testsuites>
+		<testsuite name="Unit">
+			<directory suffix="Test.php">./test</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">./app</directory>
+		</whitelist>
+	</filter>
+	<php>
+		<env name="DB_HOST" value="192.168.1.91"/>
+		<env name="DB_NAME" value="bhuntr"/>
+		<env name="DB_CHARSET" value="utf8"/>
+		<env name="DB_USERNAME" value="bhuntr"/>
+		<env name="DB_PASSWORD" value="secret"/>
+	</php>
+</phpunit>
