@@ -17,7 +17,7 @@ if(!isset($_POST["content"])) {
 $content = $_POST["content"];
 
 $model->insertData(
-    "insert into posts (user_id, replee_id, post_content, created_at, updated_at) values (:id, 0, :content, now(), now())",
+    "insert into posts (user_id, replyee_id, post_content, created_at, updated_at) values (:id, 0, :content, now(), now())",
     ['id'=>$auth->getProfile('id'), 'content'=>$content],
     function($lastId) {
         header('Location: index.php');
