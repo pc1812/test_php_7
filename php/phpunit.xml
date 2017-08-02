@@ -20,10 +20,10 @@
 		</whitelist>
 	</filter>
 	<php>
-		<env name="DB_HOST" value="192.168.1.91"/>
-		<env name="DB_NAME" value="bhuntr"/>
+		<env name="DB_HOST" value="localhost"/>
+		<env name="DB_NAME" value="test_php_7"/>
 		<env name="DB_CHARSET" value="utf8"/>
-		<env name="DB_USERNAME" value="bhuntr"/>
-		<env name="DB_PASSWORD" value="secret"/>
+		<env name="DB_USERNAME" value="demo"/>
+		<env name="DB_PASSWORD" value="test"/>
 	</php>
 </phpunit>
