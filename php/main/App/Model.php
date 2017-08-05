@@ -4,9 +4,9 @@ namespace App;
 
 use \PDO;
 use \PDOException;
+use \Exception;
 
-class Model
-{
+class Model {
 	protected $dbinfo = array();
 	protected $db;
 	
@@ -38,7 +38,7 @@ class Model
 		foreach ($pdoStmt as $pdoRow) {
 			$row = array();
 			foreach ($viewVars as $col) {
-				$row[$col] = htmlentities($pdoRow[$col]);
+				$row[$col] = $pdoRow[$col];
 			}
 			array_push($data, $row);
 		}
@@ -60,7 +60,7 @@ class Model
 				$callback($this->transform2ModelData($stmt, $viewVars));
 			}
 			else {
-				Logger::instance()->exception(new \Exception('no callback is called'));
+				Logger::instance()->exception(new Exception('no callback is called'));
 			}
 		} catch(PDOException $ex) {
 			Logger::instance()->exception($ex);

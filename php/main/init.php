@@ -25,4 +25,8 @@ use App\Auth;
 session_start();
 $auth = new Auth($model);
 $auth->validate();
+
+use App\Request;
+$request = new Request();
+
 ?>

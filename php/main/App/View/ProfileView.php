@@ -5,7 +5,7 @@ namespace App\View;
 use App\AbstractView;
 
 class ProfileView extends AbstractView {
-	public function display($pdoStmt) {
+	public function display($data) {
 		?>
 		<img src='<?=$data['picture_url']?>' width='100' height='100'/><br>
 		<form action="profile.php" method="post" enctype="multipart/form-data">

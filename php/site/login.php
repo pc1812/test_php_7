@@ -9,14 +9,14 @@ if ($auth->isUser()) {
 }
 
 
-if(!isset($_POST["username"]) || !isset($_POST["password"])) {
+if(!$request->hasPost('username') || !$request->hasPost('password')) {
     $view = new LoginView();
     $view->display([]);
     die();
 }
     
-$username = $_POST["username"];
-$password = $_POST["password"];
+$username = $request->post['username'];
+$password = $request->post['password'];
 
 $model->getData(
     "select id from users where email=:username and password=password(:password)",
@@ -33,7 +33,8 @@ $model->getData(
             header('Location: index.php');
         }
         else {
-            
+            $view = new LoginView();
+            $view->display(['username'=>$username]);
             die();
         }
     }

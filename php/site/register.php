@@ -15,9 +15,9 @@ if(!isset($_POST["nickname"]) || !isset($_POST["username"]) || !isset($_POST["pa
 }
 
 
-$nickname = $_POST["nickname"];
-$username = $_POST["username"];
-$password = $_POST["password"];
+$nickname = htmlentities($_POST["nickname"]);
+$username = htmlentities($_POST["username"]);
+$password = htmlentities($_POST["password"]);
 
 $id = $model->insertData(
     "insert into users (name, email, password, created_at, updated_at) values (:name, :email, password(:password), now(), now())",

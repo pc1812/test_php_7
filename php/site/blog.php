@@ -8,13 +8,13 @@ if ($auth->isGuest()) {
     die();
 }
 
-if(!isset($_POST["content"])) {
+if(!$request->hasPost("content")) {
     $view = new BlogView();
     $view->display([]);
     die();
 }
     
-$content = $_POST["content"];
+$content = $request->post["content"];
 
 $model->insertData(
     "insert into posts (user_id, replyee_id, post_content, created_at, updated_at) values (:id, 0, :content, now(), now())",
