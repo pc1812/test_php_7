@@ -9,10 +9,14 @@ class TableView extends AbstractView {
 	protected $columnsAsHeader = true;
 	protected $columns = array();
 	
-	public function setColumns($columns, $columnsAsHeader=true)
+	public function setColumns($columns)
+	{
+		$this->columns = $columns;
+	}
+	
+	public function setColumnsAsHeader($columnsAsHeader=true)
 	{
 		$this->columnsAsHeader = $columnsAsHeader;
-		$this->columns = $columns;
 	}
 	
 	public function display($data)

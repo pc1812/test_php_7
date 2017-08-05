@@ -38,18 +38,6 @@ class Auth {
 		$this->profile = [];
 	}
 	
-	public function display($data)
-	{
-		if ($data->rowCount() == 1) {
-			$this->profile = $data->fetch();
-			error_log('display session '.$this->profile['id'], 0);
-			error_log('isuser ?'.$this->isUser(), 0);
-		}
-		else {
-			$this->profile = [];
-		}
-	}
-	
 	public function validate()
 	{
 		if (isset($_SESSION['id'])) {
@@ -57,7 +45,18 @@ class Auth {
 			error_log('validate session '.$id, 0);
 			$this->model->getData(
 				'select * from users where id=:id', 
-				['id'=>$_SESSION['id']], $this
+				['id'=>$_SESSION['id']],
+				['id', 'name', 'picture_url'],
+				function($data) {
+					if (count($data) == 1) {
+						$this->profile = $data[0];
+						error_log('display session '.$this->profile['id'], 0);
+						error_log('isuser ?'.$this->isUser(), 0);
+					}
+					else {
+						$this->profile = [];
+					}
+				}
 			);
 		}
 		else {

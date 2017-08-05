@@ -6,7 +6,7 @@ class AbstractView {
 	
 	protected $cssPrefix = 'std';
 	protected $cssTags = array();
-	
+		
 	public function setCssPrefix($cssPrefix)
 	{
 		$this->cssPrefix = $cssPrefix;

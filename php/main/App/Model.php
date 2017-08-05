@@ -32,19 +32,35 @@ class Model
 		$this->db = null;
 	}
 	
-	public function getData($prepareStmt, $sqlArgs, $callback)
+	private function transform2ModelData($pdoStmt, $viewVars)
+	{
+		$data = array();
+		foreach ($pdoStmt as $pdoRow) {
+			$row = array();
+			foreach ($viewVars as $col) {
+				$row[$col] = htmlentities($pdoRow[$col]);
+			}
+			array_push($data, $row);
+		}
+		return $data;
+	}
+	
+	public function getData($prepareStmt, $sqlArgs, $viewVars, $callback)
 	{
 		try {
 			$stmt = $this->db->prepare($prepareStmt);
 			$stmt->execute($sqlArgs);
 			if (is_object($callback) && method_exists($callback, 'display')) {
-				call_user_func_array(array($callback, 'display'), array($stmt));
+				call_user_func_array(
+					array($callback, 'display'), // object and its function
+					array($this->transform2ModelData($stmt, $viewVars)) // parameters for that func
+					);
 			}
 			else if (is_callable($callback)) {
-				$callback($stmt);
+				$callback($this->transform2ModelData($stmt, $viewVars));
 			}
 			else {
-//				throw new \Exception ('no callback');
+				Logger::instance()->exception(new \Exception('no callback is called'));
 			}
 		} catch(PDOException $ex) {
 			Logger::instance()->exception($ex);
